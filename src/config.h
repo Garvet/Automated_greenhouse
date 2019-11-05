@@ -1,6 +1,7 @@
 #ifndef AGH_CONFIG_H
 #define AGH_CONFIG_H
 
+// Каналы ШИМ
 enum PwmChannel {
     PWM_CH_FAN1 = 0,
     PWM_CH_FAN2,
