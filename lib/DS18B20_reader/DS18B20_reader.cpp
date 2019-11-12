@@ -24,8 +24,9 @@ DS18B20_reader::DS18B20_reader(
 }
 
 DS18B20_reader::~DS18B20_reader() {
+    // Освобождение ресурсов
     delete[] addresses;
-    delete[] last_temps
+    delete[] last_temps;
 }
 
 void DS18B20_reader::update(bool forced = false) {

@@ -4,15 +4,20 @@ Dht_reader::Dht_reader(
     uint8_t dht_pin, uint8_t dht_type = DHT22,
     unsigned long update_timeout = 1000)
 : dht(dht_pin, dht_type), timeout(update_timeout) {
+    // Инициализация объекта для работы с датчиком
     dht.begin();
+
+    // Принудительное считываение
     update(true);
 }
 
 void Dht_reader::update(bool forced = false) {
+    // Если с прошлого считывания прошло timeout мс или принудительно
     if ((millis() - last_update >= timeout)  || forced) {
         float h = dht.readHumidity();
         float t = dht.readTemperature();
 
+        // В h и t могут быть NaN, поэтому нужно выплонить проверку
         if (!isnan(h))
             last_hum = h;
         if (!isnan(t))
