@@ -9,7 +9,7 @@ Dht_reader::Dht_reader(
 }
 
 void Dht_reader::update(bool forced = false) {
-    if ((millis() - last_update > timeout)  || forced) {
+    if ((millis() - last_update >= timeout)  || forced) {
         float h = dht.readHumidity();
         float t = dht.readTemperature();
 
