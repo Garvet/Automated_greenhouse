@@ -1,9 +1,8 @@
 #include "DS18B20_reader.h"
 
 DS18B20_reader::DS18B20_reader(
-    uint8_t pin, unsigned long update_timeout = 1000,
-        uint8_t resolution = 9)
-: onewire(pin), sensors(&onewire), timeout(update_timeout) {
+    uint8_t pin, unsigned long update_timeout, uint8_t resolution
+) : onewire(pin), sensors(&onewire), timeout(update_timeout) {
     sensors.begin();
 
     // Получим количество датчиков и выделим столько памяти массивам
@@ -29,7 +28,7 @@ DS18B20_reader::~DS18B20_reader() {
     delete[] last_temps;
 }
 
-void DS18B20_reader::update(bool forced = false) {
+void DS18B20_reader::update(bool forced) {
     // если с прошлого считавания прошло timeout времени
     // или принудительное считывание
     if ((millis() - last_update >= timeout) || forced) {

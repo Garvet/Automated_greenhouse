@@ -1,9 +1,8 @@
 #include "Dht_reader.h"
 
 Dht_reader::Dht_reader(
-    uint8_t dht_pin, uint8_t dht_type = DHT22,
-    unsigned long update_timeout = 1000)
-: dht(dht_pin, dht_type), timeout(update_timeout) {
+    uint8_t dht_pin, uint8_t dht_type, unsigned long update_timeout
+) : dht(dht_pin, dht_type), timeout(update_timeout) {
     // Инициализация объекта для работы с датчиком
     dht.begin();
 
@@ -11,7 +10,7 @@ Dht_reader::Dht_reader(
     update(true);
 }
 
-void Dht_reader::update(bool forced = false) {
+void Dht_reader::update(bool forced) {
     // Если с прошлого считывания прошло timeout мс или принудительно
     if ((millis() - last_update >= timeout)  || forced) {
         float h = dht.readHumidity();
