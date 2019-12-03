@@ -2,6 +2,7 @@
 #define GH_ANALOG_SENSOR
 
 #include <Arduino.h>
+#include "Analog_multi_reader.h"
 
 // Обёртка для считывания аналогового сигнала
 class Analog_sensor {
@@ -12,6 +13,9 @@ public:
 
     // Возвращает необработанное значение с датчика
     uint16_t read_raw();
+private:
+    friend class Analog_multi_reader;
+    Analog_sensor();
 };
 
 #endif

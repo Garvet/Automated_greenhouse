@@ -1,9 +1,8 @@
 #include "Hall_reader.h"
 
-Hall_reader::Hall_reader(TwoWire* two_wire, uint8_t adr_1, uint8_t adr_2)
-: ext_1(adr_1, two_wire), ext_2(adr_2, two_wire) {
-    ext_1.begin();
-    ext_2.begin();
+Hall_reader::Hall_reader(PCF857x& extender_1, PCF857x& extender_2,
+    uint8_t adr_1, uint8_t adr_2)
+: ext_1(extender_1), ext_2(extender_2) {
 }
 
 bool Hall_reader::get(uint8_t sensor_id) {

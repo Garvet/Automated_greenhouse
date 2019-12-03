@@ -2,6 +2,10 @@
 
 Analog_sensor::Analog_sensor(uint8_t sensorPin)
 : pin(sensorPin) {
+}
+
+Analog_sensor::Analog_sensor()
+: Analog_sensor(0) {
 
 }
 
